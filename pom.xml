@@ -1,17 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>inflection-rl</groupId>
-		<artifactId>inflection-rl</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
 
 
-	<artifactId>inflection-rl-analysis</artifactId>
+	<groupId>sparkexample</groupId>
+	<artifactId>sparkexample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>inflection-rl-analysis</name>
+	<name>sparkexample</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -31,11 +27,6 @@
 		</plugins>
 	</build>
 	<dependencies>
-		<dependency>
-			<groupId>inflection-rl</groupId>
-			<artifactId>inflection-rl-common</artifactId>
-			<version>${project.version}</version>
-		</dependency>
 		<dependency> <!-- Spark dependency -->
 			<groupId>org.apache.spark</groupId>
 			<artifactId>spark-core_2.10</artifactId>
