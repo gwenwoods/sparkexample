@@ -10,7 +10,7 @@ import java.io.InputStream;
  */
 public final class SystemParameters {
 
-    private static final Platform JOB_PLATFORM = Platform.UNIX;
+    private static final Platform JOB_PLATFORM = Platform.AWS;
 
     private static final String SLASH = "/";
 
