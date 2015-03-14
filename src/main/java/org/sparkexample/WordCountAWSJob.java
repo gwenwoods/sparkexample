@@ -114,9 +114,11 @@ public final class WordCountAWSJob {
         long startTime = System.currentTimeMillis();
 
         if (SystemParameters.getJobPlatform() == SystemParameters.Platform.AWS) {
-            counts.coalesce(1, false).saveAsTextFile(sysPropertiesMap.get(OUTPUT_DATA), GzipCodec.class);
+           // counts.coalesce(100, false).saveAsTextFile(sysPropertiesMap.get(OUTPUT_DATA), GzipCodec.class);
+            counts.saveAsTextFile(sysPropertiesMap.get(OUTPUT_DATA), GzipCodec.class);
         } else {
-            counts.coalesce(1, false).saveAsTextFile(sysPropertiesMap.get(OUTPUT_DATA));
+           // counts.coalesce(100, false).saveAsTextFile(sysPropertiesMap.get(OUTPUT_DATA));
+            counts.coalesce(100, false).saveAsTextFile(sysPropertiesMap.get(OUTPUT_DATA));
         }
 
         long runTime = (System.currentTimeMillis() - startTime) / 1000;
