@@ -55,7 +55,7 @@ public final class WordCountAWSJob {
         // Parse Job Configuration
 
         ArgumentParser parser =
-            ArgumentParsers.newArgumentParser("Infutor Cleanser Job").defaultHelp(true)
+            ArgumentParsers.newArgumentParser("Word Count Job").defaultHelp(true)
                 .description("Runs Infutor Cleanser Job");
         parser.addArgument("-p", "--platform").type(String.class).setDefault(PLATFORM_AWS);
         parser.addArgument("-in", "--input").type(String.class).help("list of input directories");
