@@ -1,1 +1,3 @@
 # sparkexample
+
+./spark/bin/spark-submit --master yarn-cluster --executor-memory 40g --executor-cores 32 --num-executors 2 --jars s3n://my-path/wen/libjars/argparse4j-0.4.3.jar --class org.sparkexample.WordCountAWSJob /home/hadoop/sparkexample-0.0.1-SNAPSHOT-job-0407.jar -p AWS -in s3n://aws-publicdatasets/common-crawl/crawl-data/CC-MAIN-2014-10/segments/1394678706211/wat/ -out s3n://my-path/wen/sparkexample_0407_wat -out s3n://my-path/wen/sparkexample_out -log s3n://my-path/wen/sparkexample_0407_log
