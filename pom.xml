@@ -6,7 +6,7 @@
 	<groupId>sparkexample</groupId>
 	<artifactId>sparkexample</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+	<packaging>jar</packaging>
 	<name>sparkexample</name>
 	<url>http://maven.apache.org</url>
 	<properties>
@@ -24,8 +24,55 @@
 					<target />
 				</configuration>
 			</plugin>
+
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-jar-plugin</artifactId> -->
+			<!-- <configuration> -->
+			<!-- <archive> -->
+			<!-- <manifest> -->
+			<!-- <mainClass>org.sparkexample.WordCountAWSJob</mainClass> -->
+			<!-- </manifest> -->
+			<!-- </archive> -->
+			<!-- </configuration> -->
+			<!-- </plugin> -->
+
+			<plugin>
+				<!-- <groupId>org.apache.maven.plugins</groupId> -->
+				<!-- <artifactId>maven-jar-plugin</artifactId> -->
+				<!-- <configuration> -->
+				<!-- <archive> -->
+				<!-- <manifest> -->
+				<!-- <mainClass>org.sparkexample.WordCountAWSJob</mainClass> -->
+				<!-- </manifest> -->
+				<!-- </archive> -->
+				<!-- </configuration> -->
+				<groupId>org.dstovall</groupId>
+				<artifactId>onejar-maven-plugin</artifactId>
+				<version>1.4.4</version>
+				<executions>
+					<execution>
+						<configuration>
+							<mainClass>org.sparkexample.WordCountAWSJob</mainClass>
+							<!-- Optional -->
+							<onejarVersion>0.97</onejarVersion>
+							<binlibs>
+								<fileSet>
+									<directory>${basedir}/target/classes</directory>
+								</fileSet>
+							</binlibs>
+						</configuration>
+						<goals>
+							<goal>one-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
+
+
 	<dependencies>
 		<dependency> <!-- Spark dependency -->
 			<groupId>org.apache.spark</groupId>
@@ -166,52 +213,19 @@
 			<artifactId>argparse4j</artifactId>
 			<version>0.4.3</version>
 		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>1.9.1</version>
+		</dependency>
 	</dependencies>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>onejar-maven-plugin.googlecode.com</id>
+			<url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 
-	<profiles>
-		<profile>
-			<id>fatjar</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-				<property>
-					<name>fatjar</name>
-				</property>
-			</activation>
-			<!--dependencies> <dependency> <groupId>org.apache.hadoop</groupId> <artifactId>hadoop-snappy</artifactId> 
-				<version>${hadoop-snappy.version}</version> </dependency> </dependencies -->
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<version>2.2.1</version>
-						<configuration>
-							<tarLongFileMode>gnu</tarLongFileMode>
-							<descriptors>
-								<descriptor>src/main/assembly/job.xml</descriptor>
-							</descriptors>
-							<!--descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> 
-								</descriptorRefs -->
-							<archive>
-								<index>true</index>
-								<!--<manifest> -->
-								<!--<mainClass>mapreduce/Driver</mainClass> -->
-								<!--</manifest> -->
-							</archive>
-						</configuration>
-						<executions>
-							<execution>
-								<id>tarball</id>
-								<phase>package</phase>
-								<goals>
-									<goal>single</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+
 </project>
